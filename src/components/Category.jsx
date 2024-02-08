@@ -1,5 +1,4 @@
 import { FaPizzaSlice, FaHamburger } from 'react-icons/fa'
-//import { TbMeat } from 'react-icons/tb'
 import { BiSushi } from 'react-icons/bi'
 import { PiFlowerLotus, PiPepperFill } from 'react-icons/pi'
 import { GiNoodles, GiTacos, GiDumplingBao, GiHotMeal, GiOlive, GiBaobab } from 'react-icons/gi'
