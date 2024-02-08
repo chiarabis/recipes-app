@@ -2,33 +2,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
-//import { data } from '../data'
 
 function Popular(){
-    /*const [data, setData] = useState([])
-
-    useEffect(()=> {
-        const fetchData = async() => {
-            try{
-                const response = await fetch('https://api.spoonacular.com/recipes/random?apiKey=328dabcd7af647cca3432a1aa982eccf&number=9')
-                if(!response.ok){
-                    throw new Error(`Error! Status: ${response.status}`)
-                }
-
-                const jsonData = await response.json()
-                setData(jsonData.recipes);
-
-                console.log(jsonData.recipes)
-            } catch(error) {
-                console.error('Error during API request', error.message)
-            }
-        };
-
-        fetchData();
-    }, [])*/
-
-
-
     const [popular, setPopular] = useState([]);
 
     useEffect(()=> {
@@ -72,17 +47,6 @@ function Popular(){
                             </SplideSlide>
                         );
                     })}
-                    {/*{data.map((item) => {
-                        return (
-                            <SplideSlide key={item.id}>
-                                <Card>
-                                    <p>{item.title}</p>
-                                    <img src={item.image} alt={item.title}/>
-                                    <Gradient/>
-                                </Card>
-                            </SplideSlide>
-                        )
-                    })}*/}
                 </Splide>
 
             </Wrapper>
@@ -133,26 +97,5 @@ const Gradient = styled.div`
     height: 100%;
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7));
     `
-
-/*se l'img fosse contenuta in un div:
-const Card = styled.div`
-    overflow: hidden;
-    
-    div{
-        width: 100%;
-    }
-
-    img{
-        border-radius: 1.5rem;
-        width: 100%;
-        height: auto;
-    }
-
-    p{
-        margin: 0 0.3rem;
-        margin-bottom: 0.8rem;
-    }
-    `;*/
-
 
 export default Popular;
