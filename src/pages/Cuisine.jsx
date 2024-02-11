@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 function Cuisine(){
@@ -20,12 +21,19 @@ function Cuisine(){
 
     
     return (
-        <Grid>
-            {cuisine.map((item) => {
+        <Grid
+            animate={{opacity: 1}}
+            initial={{opacity: 0}}
+            exit={{opacity: 0}}
+            transition={{duration: 0.5}}
+            >
+            {cuisine.map((recipe) => {
                 return (
-                    <Card key={item.id}>
-                        <img src={item.image} alt={item.title}/>
-                        <h4>{item.title}</h4>
+                    <Card key={recipe.id}>
+                        <Link to={"/recipe/" + recipe.id}>
+                            <img src={recipe.image} alt={recipe.title}/>
+                            <h4>{recipe.title}</h4>
+                        </Link>
                     </Card>
                 )
             })}
@@ -33,7 +41,7 @@ function Cuisine(){
     )
 }
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     grid-gap: 3rem;
