@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import { Link } from 'react-router-dom';
-//import { data } from '../data'
 
 function Popular(){
     const [popular, setPopular] = useState([]);
@@ -17,8 +16,8 @@ function Popular(){
         if(check){
             setPopular(JSON.parse(check));
         }else{
-            //const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=328dabcd7af647cca3432a1aa982eccf&number=10');
-            const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=d8ea4b6eaa474df5a80b780c79e2be57&number=10');
+            //substitute with your Spoonacular API key
+            const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=328dabcd7af647cca3432a1aa982eccf&number=10');
             const data = await api.json();
             localStorage.setItem('popular', JSON.stringify(data.recipes));
             setPopular(data.recipes);
@@ -101,26 +100,5 @@ const Gradient = styled.div`
     height: 100%;
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7));
     `
-
-/*se l'img fosse contenuta in un div:
-const Card = styled.div`
-    overflow: hidden;
-    
-    div{
-        width: 100%;
-    }
-
-    img{
-        border-radius: 1.5rem;
-        width: 100%;
-        height: auto;
-    }
-
-    p{
-        margin: 0 0.3rem;
-        margin-bottom: 0.8rem;
-    }
-    `;*/
-
 
 export default Popular;
