@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 
@@ -15,11 +16,11 @@ function Veggie(){
         if(check){
             setVeggie(JSON.parse(check));
         }else{
-            const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=328dabcd7af647cca3432a1aa982eccf&number=10&tags=vegetarian');
+            //const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=328dabcd7af647cca3432a1aa982eccf&number=10&tags=vegetarian');
+            const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=d8ea4b6eaa474df5a80b780c79e2be57&number=10&tags=vegetarian');
             const data = await api.json();
             localStorage.setItem('veggie', JSON.stringify(data.recipes));
             setVeggie(data.recipes);
-            console.log(data.recipes)
         }
     }
 
@@ -36,13 +37,15 @@ function Veggie(){
                     drag: 'free',
                     gap: '3rem',
                 }}>
-                    {veggie.map(( {title, id, image} ) => {
+                    {veggie.map((recipe) => {
                         return (
-                            <SplideSlide key={id}>
+                            <SplideSlide key={recipe.id}>
                                 <Card>
-                                    <p>{title}</p>
-                                    <img src={image} alt={title}/>
-                                    <Gradient/>
+                                    <Link to={'/recipe/' + recipe.id}>
+                                        <p>{recipe.title}</p>
+                                        <img src={recipe.image} alt={recipe.title}/>
+                                        <Gradient/>
+                                    </Link>
                                 </Card>
                             </SplideSlide>
                         );
@@ -54,7 +57,7 @@ function Veggie(){
 }
 
 const Wrapper = styled.div`
-    margin: 4rem 1rem;
+    margin: 4rem 0;
     `;
 const Card = styled.div`
     min-height: 15rem;

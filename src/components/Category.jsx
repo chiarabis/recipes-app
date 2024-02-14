@@ -1,7 +1,7 @@
-import { FaPizzaSlice, FaHamburger } from 'react-icons/fa'
-import { BiSushi } from 'react-icons/bi'
-import { PiFlowerLotus, PiPepperFill } from 'react-icons/pi'
-import { GiNoodles, GiTacos, GiDumplingBao, GiHotMeal, GiOlive, GiBaobab } from 'react-icons/gi'
+import { MdKebabDining } from 'react-icons/md'
+import { BiSushi, BiCheese, BiSolidBowlRice} from 'react-icons/bi'
+import { PiFlowerLotus, PiPepperFill, PiPizza, PiHamburger } from 'react-icons/pi'
+import { GiNoodles, GiTacos, GiDumplingBao, GiOlive, GiBaobab, GiTeapot, GiMatryoshkaDolls, GiSausage, GiBullHorns, GiSalmon, GiPalmTree } from 'react-icons/gi'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
@@ -9,16 +9,24 @@ function Category(){
     return (
         <List>
             <SLink to={'/cuisine/Italian'}>
-                <FaPizzaSlice/>
+                <PiPizza/>
                 <h4>Italian</h4>
             </SLink>
+            <SLink to={'/cuisine/British'}>
+                <GiTeapot/>
+                <h4>British</h4>
+            </SLink>
             <SLink to={'/cuisine/American'}>
-                <FaHamburger/>
+                <PiHamburger/>
                 <h4>North American</h4>
             </SLink>
             <SLink to={'/cuisine/Thai'}>
                 <GiNoodles/>
                 <h4>Thai</h4>
+            </SLink>
+            <SLink to={'/cuisine/Korean'}>
+                <BiSolidBowlRice/>
+                <h4>Korean</h4>
             </SLink>
             <SLink to={'/cuisine/Japanese'}>
                 <BiSushi/>
@@ -33,12 +41,16 @@ function Category(){
                 <h4>Chinese</h4>
             </SLink>
             <SLink to={'/cuisine/French'}>
-                <GiHotMeal/>
+                <BiCheese/>
                 <h4>French</h4>
             </SLink>
             <SLink to={'/cuisine/African'}>
                 <GiBaobab/>
                 <h4>African</h4>
+            </SLink>
+            <SLink to={'/cuisine/Nordic'}>
+                <GiSalmon/>
+                <h4>Nordic</h4>
             </SLink>
             <SLink to={'/cuisine/Middle Eastern'}>
                 <GiOlive/>
@@ -51,6 +63,26 @@ function Category(){
             <SLink to={'/cuisine/Latin American'}>
                 <PiPepperFill/>
                 <h4>Latin American</h4>
+            </SLink>
+            <SLink to={'/cuisine/Eastern European'}>
+                <GiMatryoshkaDolls/>
+                <h4>Eastern European</h4>
+            </SLink>
+            <SLink to={'/cuisine/German'}>
+                <GiSausage/>
+                <h4>German</h4>
+            </SLink>
+            <SLink to={'/cuisine/Spanish'}>
+                <GiBullHorns/>
+                <h4>Spanish</h4>
+            </SLink>
+            <SLink to={'/cuisine/Caribbean'}>
+                <GiPalmTree/>
+                <h4>Caribbean</h4>
+            </SLink>
+            <SLink to={'/cuisine/Greek'}>
+                <MdKebabDining/>
+                <h4>Greek</h4>
             </SLink>
         </List>
     )

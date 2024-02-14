@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
+import { Link } from 'react-router-dom';
+//import { data } from '../data'
 
 function Popular(){
     const [popular, setPopular] = useState([]);
@@ -15,11 +17,11 @@ function Popular(){
         if(check){
             setPopular(JSON.parse(check));
         }else{
-            const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=328dabcd7af647cca3432a1aa982eccf&number=10');
+            //const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=328dabcd7af647cca3432a1aa982eccf&number=10');
+            const api = await fetch('https://api.spoonacular.com/recipes/random?apiKey=d8ea4b6eaa474df5a80b780c79e2be57&number=10');
             const data = await api.json();
             localStorage.setItem('popular', JSON.stringify(data.recipes));
             setPopular(data.recipes);
-            console.log(data.recipes)
         }
     }
     
@@ -36,13 +38,15 @@ function Popular(){
                     drag: 'free',
                     gap: '3rem',
                 }}>
-                    {popular.map(( {title, id, image} ) => {
+                    {popular.map((recipe) => {
                         return (
-                            <SplideSlide key={id}>
+                            <SplideSlide key={recipe.id}>
                                 <Card>
-                                    <p>{title}</p>
-                                    <img src={image} alt={title}/>
-                                    <Gradient/>
+                                    <Link to={'/recipe/' + recipe.id}>
+                                        <p>{recipe.title}</p>
+                                        <img src={recipe.image} alt={recipe.title}/>
+                                        <Gradient/>
+                                    </Link>
                                 </Card>
                             </SplideSlide>
                         );
@@ -55,7 +59,7 @@ function Popular(){
 }
 
 const Wrapper = styled.div`
-    margin: 4rem 1rem;
+    margin: 4rem 0;
     `;
 const Card = styled.div`
     min-height: 15rem;
@@ -97,5 +101,26 @@ const Gradient = styled.div`
     height: 100%;
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7));
     `
+
+/*se l'img fosse contenuta in un div:
+const Card = styled.div`
+    overflow: hidden;
+    
+    div{
+        width: 100%;
+    }
+
+    img{
+        border-radius: 1.5rem;
+        width: 100%;
+        height: auto;
+    }
+
+    p{
+        margin: 0 0.3rem;
+        margin-bottom: 0.8rem;
+    }
+    `;*/
+
 
 export default Popular;
