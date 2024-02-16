@@ -1,6 +1,5 @@
 import { useIngredientContext } from "../contexts/IngredientContext";
 import styled from "styled-components";
-//import NotesBg from "../../public/assets/notes.png";
 
 function GroceryList() {
   const { selectedIngredients, setSelectedIngredients } = useIngredientContext();
