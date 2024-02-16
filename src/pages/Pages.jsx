@@ -2,9 +2,10 @@ import Home from "./Home"
 import Cuisine from "./Cuisine"
 import Searched from "./Searched"
 import Recipe from "./Recipe"
+import GroceryList from "./GroceryList"
+import FavRecipes from "./FavRecipes"
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion"
-import IngredientList from "./IngredientList"
 
 function Pages(){
     const location = useLocation();
@@ -16,7 +17,8 @@ function Pages(){
                 <Route path="/cuisine/:type" element={<Cuisine/>}/>
                 <Route path="/searched/:search" element={<Searched/>}/>
                 <Route path="/recipe/:name" element={<Recipe/>}/>
-                <Route path="/list/" element={<IngredientList/>}/>
+                <Route path="/list/" element={<GroceryList/>}/>
+                <Route path="/favorites/" element={<FavRecipes/>}/>
             </Routes>
         </AnimatePresence>
     )
