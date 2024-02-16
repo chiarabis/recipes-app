@@ -2,16 +2,21 @@ import Pages from "./pages/Pages"
 import Category from "./components/Category"
 import Search from "./components/Search"
 import List from "./components/List"
+import Favorites from "./components/Favorites"
 import { BrowserRouter } from "react-router-dom"
 import styled from "styled-components"
 import { GiKnifeFork } from "react-icons/gi"
 import { Link } from "react-router-dom"
+import { IngredientProvider } from "./contexts/IngredientContext"
+
 
 function App() {
   return (
     <>
       <div>
         <BrowserRouter>
+        <IngredientProvider>
+
           <Nav>
             <Logo>
               <GiKnifeFork/>
@@ -19,6 +24,7 @@ function App() {
             </Logo>
 
             <Box>
+              <Favorites/>
               <List/>
               <Search/>
             </Box>
@@ -26,6 +32,8 @@ function App() {
 
           <Category/>
           <Pages/>
+        
+        </IngredientProvider>
         </BrowserRouter>
       </div>
     </>
