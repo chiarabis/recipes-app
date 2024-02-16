@@ -2,32 +2,107 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { CiSquarePlus } from "react-icons/ci";
+import { FaHeart, FaShareAlt } from "react-icons/fa";
+//import { useNavigate } from 'react-router-dom';
+import { useIngredientContext } from '../contexts/IngredientContext';
 
-function Recipe( {addToList} ) {
+function Recipe() {
     let params = useParams();
     const [details, setDetails] = useState({})
     const [activeTab, setActiveTab] = useState('instructions')
+    const [showPopupFav, setShowPopupFav] = useState(false)
+    const [showPopupShare, setShowPopupShare] = useState(false)
+
     const fetchDetails = async() => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=328dabcd7af647cca3432a1aa982eccf`);
+        //const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=328dabcd7af647cca3432a1aa982eccf`);
+        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=d8ea4b6eaa474df5a80b780c79e2be57`);
         const detailData = await data.json();
         setDetails(detailData);
-        console.log(detailData)
     }
-
+    
     useEffect(()=> {
         fetchDetails()
     }, [params.name])
 
-    const addIngredient = (ingredient) => {
-        console.log('aggiungi ingrediente:', ingredient.name);
-        addToList(ingredient.name);
+
+    //add ingredient to grocery list and saved them
+    const { selectedIngredients, setSelectedIngredients } = useIngredientContext();
+    
+    const handleAdd = (ingredient) => {
+        const ingredientName = ingredient.nameClean;
+        
+        if (!selectedIngredients.includes(ingredientName)) {
+            const updateIngredients = [...selectedIngredients, ingredientName];
+            setSelectedIngredients(updateIngredients);
+
+            localStorage.setItem('selectedIngredients', JSON.stringify(updateIngredients));
+        }
     }
+    useEffect(() => {
+        const savedIngredients = localStorage.getItem('selectedIngredients');
+        if (savedIngredients) {
+            setSelectedIngredients(JSON.parse(savedIngredients));
+        }
+    }, []);
+
+
+    //favorites recipes
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const isFavorited = storedFavorites.some(favorite => favorite.id === details.id);
+        setIsFavorite(isFavorited);
+    }, [details.id]);
+
+    const toggleFavorite = () => {
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const isFavorited = storedFavorites.some(favorite => favorite.id === details.id);
+
+        if (isFavorited) {
+            const updatedFavorites = storedFavorites.filter(favorite => favorite.id !== details.id);
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            setIsFavorite(false);
+        } else {
+            const updatedFavorites = [...storedFavorites, { id: details.id, title: details.title }];
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            setIsFavorite(true);
+        }
+    }
+
+    
+    //share recipes
+    const toggleShare = async () => {
+        try {
+          await navigator.share({
+            title: details.title,
+            text: details.title,
+            url: window.location.href
+          });
+        } catch (error) {
+          console.error('Error sharing:', error);
+        }
+    };
+
+
 
     return (
         <DetailWrapper>
             <div>
                 <h2>{details.title}</h2>
                 <img src={details.image} alt={details.title}></img>
+
+                <Icon>
+                    <FaHeart onClick={toggleFavorite}
+                        color={isFavorite ? '#f27121' : '#313131'}
+                        onMouseEnter={() => setShowPopupFav(true)}
+                        onMouseLeave={() => setShowPopupFav(false)}/>
+                        {showPopupFav && <Popup>{isFavorite ? 'Remove from favorites' : 'Save to favorites'}</Popup>}
+                    <FaShareAlt onClick={toggleShare}
+                        onMouseEnter={() => setShowPopupShare(true)}
+                        onMouseLeave={() => setShowPopupShare(false)}/>
+                        {showPopupShare && <Popup>Share this recipe!</Popup>}
+                </Icon>
             </div>
             <Info>
                 <Button
@@ -48,10 +123,10 @@ function Recipe( {addToList} ) {
                         {details.extendedIngredients.map((ingredient) => {
                             return <li key={ingredient.id}>
                                 {ingredient.original}
-                                <AddButton onClick={() => addIngredient(ingredient)}>
+                                <IconButton onClick={() => handleAdd(ingredient)}>
                                     <CiSquarePlus/>
-                                </AddButton>
-                            </li>
+                                </IconButton>
+                            </li> 
                         })}
                     </ul>  
                 )}              
@@ -60,6 +135,38 @@ function Recipe( {addToList} ) {
     )
 }
 
+const Popup = styled.div`
+  position: absolute;
+  bottom: 130%;
+  left: 0;
+  font-size: 0.6rem;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`
+
+const Icon = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    margin: 2rem 0;
+    position: relative;
+
+    svg{
+      font-size: 1.5rem;
+      color: #313131;
+      margin-right: 1rem;
+    }
+    svg:active{
+      transform: scale(1.2);
+      color: #f27121;
+    }
+`
 const DetailWrapper = styled.div`
     margin-top: 6rem;
     margin-bottom: 5rem;
@@ -91,7 +198,7 @@ const Button = styled.button`
     margin-top: 1rem;
     font-weight: 600;
 `
-const AddButton = styled.button`
+const IconButton = styled.button`
     font-size: 1.5rem;
     background: transparent;
     border: none;
@@ -100,7 +207,7 @@ const AddButton = styled.button`
     margin-left: 1rem;
     translate: 0 0.3rem;
 
-    :hover{
+    &:hover{
         color: #f27121;
     }
     svg:active{
