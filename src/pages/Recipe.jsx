@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { CiSquarePlus } from "react-icons/ci";
 import { FaHeart, FaShareAlt } from "react-icons/fa";
-//import { useNavigate } from 'react-router-dom';
 import { useIngredientContext } from '../contexts/IngredientContext';
 
 function Recipe() {
@@ -14,8 +13,7 @@ function Recipe() {
     const [showPopupShare, setShowPopupShare] = useState(false)
 
     const fetchDetails = async() => {
-        //const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=328dabcd7af647cca3432a1aa982eccf`);
-        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=d8ea4b6eaa474df5a80b780c79e2be57`);
+        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=328dabcd7af647cca3432a1aa982eccf`);
         const detailData = await data.json();
         setDetails(detailData);
     }
