@@ -121,13 +121,14 @@ const Banner = styled.div`
     opacity: ${props => props.show ? '1' : '0'};
     transition: opacity 3s ease-in-out;
     position: absolute;
+    top: -25%;
 
     background: linear-gradient(to right, #f27121, #e94057);
     border-radius: 1rem;
     display: flex;
+    flex-direction:column;
     flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
+    align-items:center;
     justify-content: center;
     margin: 2rem 0;
     height:200px;
@@ -137,6 +138,13 @@ const Banner = styled.div`
         color: #313131;
         text-align: center;
         margin-bottom: 1rem;
+    }
+
+    @media (max-width: 1216px){
+        top: 0;
+    }
+    @media (max-width: 855px){
+        top: 15%;
     }
 `
 const List = styled.div`
