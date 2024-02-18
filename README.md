@@ -6,3 +6,6 @@ I have used Spoonacular API to get data. In the API request you have to change t
 ```fetch('https://api.spoonacular.com/recipes/random?apiKey=328dabcd7af647cca3432a1aa982eccf&number=9')```: you have to sobstitute this part ```apiKey=328dabcd7af647cca3432a1aa982eccf```.
 
 > Tutorial is from Youtube channel 'developedbyed', to which I added other features 😎 - Thank you!
+
+### Link
+https://recipes-gaa61ud2g-chiaras-projects-ea049797.vercel.app
