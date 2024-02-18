@@ -4,10 +4,35 @@ import { PiFlowerLotus, PiPepperFill, PiPizza, PiHamburger } from 'react-icons/p
 import { GiNoodles, GiTacos, GiDumplingBao, GiOlive, GiBaobab, GiTeapot, GiMatryoshkaDolls, GiSausage, GiBullHorns, GiSalmon, GiPalmTree } from 'react-icons/gi'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { useState, useEffect } from "react"
 
 function Category(){
+    const [showCategories, setShowCategories] = useState(false)
+    const [showBanner, setShowBanner] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setShowBanner(true);
+        }, 3000);
+        return () => clearTimeout(timer);
+      }, []);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+        setShowCategories(true);
+        setShowBanner(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
-        <List>
+        <Wrapper>
+        <Banner show={showBanner}>
+            <h1>Any ideas what to cook today?</h1>
+            <span>Discover flavors and colors from all over the 🌎🌏</span>
+        </Banner>
+
+        <List show={showCategories}>
             <SLink to={'/cuisine/Italian'}>
                 <PiPizza/>
                 <h4>Italian</h4>
@@ -85,15 +110,43 @@ function Category(){
                 <h4>Greek</h4>
             </SLink>
         </List>
+        </Wrapper>
     )
 }
+const Wrapper = styled.div`
+    width: 100%;
+    position: relative;
+`
+const Banner = styled.div`
+    opacity: ${props => props.show ? '1' : '0'};
+    transition: opacity 3s ease-in-out;
+    position: absolute;
 
+    background: linear-gradient(to right, #f27121, #e94057);
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content:center;
+    justify-content: center;
+    margin: 2rem 0;
+    height:200px;
+    width: 100%;
+
+    h1{
+        color: #313131;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+`
 const List = styled.div`
+    opacity: ${props => props.show ? '1' : '0'};
+    transition: opacity 3s ease;
+
     display: flex;
     justify-content: center;
     margin: 2rem 0;
     flex-wrap: wrap;
-    `;
+`
 const SLink = styled(NavLink)`
     display: flex;
     flex-direction: column;
@@ -129,6 +182,6 @@ const SLink = styled(NavLink)`
             color: white;
         }
     }
-    `;
+`
 
 export default Category;
