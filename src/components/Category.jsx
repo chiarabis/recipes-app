@@ -126,7 +126,8 @@ const Banner = styled.div`
     border-radius: 1rem;
     display: flex;
     flex-wrap: wrap;
-    align-content:center;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin: 2rem 0;
     height:200px;
