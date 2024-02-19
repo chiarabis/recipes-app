@@ -29,7 +29,7 @@ function Category(){
         <Wrapper>
         <Banner show={showBanner}>
             <h1>Any ideas what to cook today?</h1>
-            <span>Discover flavors and colors from all over the 🌎🌏</span>
+            <span>Discover flavors and colors from all over the 🌎</span>
         </Banner>
 
         <List show={showCategories}>
