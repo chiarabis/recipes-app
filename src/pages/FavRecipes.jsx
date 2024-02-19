@@ -43,7 +43,7 @@ function FavRecipes() {
 const Box = styled.div`
     display: flex;
     flex-direction: column;
-    background: pink;
+    background: #fce8d7;
     margin-bottom: 3rem;
     padding: 1.2rem;
     border-radius: 1rem;

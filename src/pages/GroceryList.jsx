@@ -71,10 +71,11 @@ const DeleteButton = styled.button`
 const Box = styled.div`
     display: flex;
     flex-direction: column;
-    background: pink;
+    background-image: url('/assets/notes.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
     margin-bottom: 3rem;
     padding: 1.2rem;
-    border-radius: 1rem;
 
     h4{
         font-size: 1.3rem;
