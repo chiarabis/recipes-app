@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom'
 
 
 function Cuisine(){
+    const spoonacularApiKey = import.meta.env.VITE_SOME_KEY;
     const [cuisine, setCuisine] = useState([])
     let params = useParams()
     
     const getCuisine = async(name) => {
-        //substitute with your Spoonacular API key
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=328dabcd7af647cca3432a1aa982eccf&cuisine=${name}`)
+        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularApiKey}&cuisine=${name}`)
         const recipes = await data.json()
         setCuisine(recipes.results)
     }

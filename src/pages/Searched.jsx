@@ -4,11 +4,12 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 function Searched() {
+    const spoonacularApiKey = import.meta.env.VITE_SOME_KEY;
     const [searchedRecipes, setSearchedRecipes] = useState([])
     let params = useParams()
 
     const getSearched = async(name) => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=328dabcd7af647cca3432a1aa982eccf&query=${name}`)
+        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularApiKey}&query=${name}`)
         const recipes = await data.json()
         setSearchedRecipes(recipes.results)
     }
