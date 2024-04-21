@@ -17,4 +17,4 @@ I got data from _Spoonacular API_. In the API request you have to change the par
  
 ---
 ### Link
-:globe_with_meridians: The site is deployed by [Vercel]
+:globe_with_meridians: The site is deployed by Vercel ‣ [HERE](https://recipes-app-hazel-zeta.vercel.app/)
