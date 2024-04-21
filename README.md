@@ -10,9 +10,11 @@ I got data from _Spoonacular API_. In the API request you have to change the par
 - [x] Framer Motion
 - [x] React Splide
 - [x] Styled Components
+
 ---
 ### Source
-> Tutorial is from Youtube channel 'developedbyed', to which I added other features 😎 - Thank you!
+:information_source: Tutorial is from Youtube channel ```@developedbyed```, to which I added other features :sunglasses: - Thank you!
+ 
 ---
 ### Link
-The site is deployed by [Vercel]
+:globe_with_meridians: The site is deployed by [Vercel]
