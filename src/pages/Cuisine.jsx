@@ -6,18 +6,25 @@ import { Link } from 'react-router-dom'
 
 
 function Cuisine(){
-    const spoonacularApiKey = import.meta.env.VITE_SOME_KEY;
+    const apiKey = import.meta.env.VITE_SOME_KEY;
     const [cuisine, setCuisine] = useState([])
     let params = useParams()
     
     const getCuisine = async(name) => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularApiKey}&cuisine=${name}`)
-        const recipes = await data.json()
-        setCuisine(recipes.results)
+        try{
+            const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&cuisine=${name}`)
+            if (!data.ok){
+                throw new Error('Errore durante il recupero dei dati');
+            }
+            const recipes = await data.json()
+            setCuisine(recipes.results)
+        } catch(error){
+            console.error('Si è verificato un errore durante il recupero dei dati:', error);
+        }     
     }
 
     useEffect(()=> {
-        getCuisine(params.type)
+        getCuisine(params.type, apiKey)
     }, [params.type])
 
     

@@ -6,7 +6,7 @@ import { FaHeart, FaShareAlt } from "react-icons/fa";
 import { useIngredientContext } from '../contexts/IngredientContext';
 
 function Recipe() {
-    const spoonacularApiKey = import.meta.env.VITE_SOME_KEY;
+    const apiKey = import.meta.env.VITE_SOME_KEY;
     let params = useParams();
     const [details, setDetails] = useState({})
     const [activeTab, setActiveTab] = useState('instructions')
@@ -14,13 +14,20 @@ function Recipe() {
     const [showPopupShare, setShowPopupShare] = useState(false)
 
     const fetchDetails = async() => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${spoonacularApiKey}`);
-        const detailData = await data.json();
-        setDetails(detailData);
+        try{
+            const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${apiKey}`);
+            if (!data.ok){
+                throw new Error('Errore durante il recupero dei dati');
+            }
+            const detailData = await data.json();
+            setDetails(detailData);
+        } catch(error) {
+            console.error('Si è verificato un errore durante il recupero dei dati:', error);
+        }
     }
     
     useEffect(()=> {
-        fetchDetails()
+        fetchDetails(params.name, apiKey)
     }, [params.name])
 
 

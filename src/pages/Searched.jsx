@@ -4,20 +4,28 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 function Searched() {
-    const spoonacularApiKey = import.meta.env.VITE_SOME_KEY;
+    const apiKey = import.meta.env.VITE_SOME_KEY;
     const [searchedRecipes, setSearchedRecipes] = useState([])
     let params = useParams()
 
     const getSearched = async(name) => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularApiKey}&query=${name}`)
-        const recipes = await data.json()
-        setSearchedRecipes(recipes.results)
+        try{
+            const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${name}`)
+            if (!data.ok){
+                throw new Error('Errore durante il recupero dei dati');
+            }
+            const recipes = await data.json()
+            setSearchedRecipes(recipes.results)
+        } catch(error) {
+            console.error('Si è verificato un errore durante il recupero dei dati:', error);
+        }    
     }
 
     useEffect(()=> {
-        getSearched(params.search)
+        getSearched(params.search, apiKey)
     }, [params.search])
 
+    
     return (
         <Grid>
             {searchedRecipes.map((recipe) => {
