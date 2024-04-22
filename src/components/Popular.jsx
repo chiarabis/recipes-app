@@ -5,15 +5,15 @@ import '@splidejs/splide/dist/css/splide.min.css';
 import { Link } from 'react-router-dom';
 
 function Popular(){
-    const spoonacularApiKey = import.meta.env.VITE_SOME_KEY;
+    const apiKey = import.meta.env.VITE_SOME_KEY;
     const [popular, setPopular] = useState([]);
 
-    const getPopular = async() => {
+    const getPopular = async(apiKey) => {
         const check = localStorage.getItem('popular');
         if(check !== null){
             setPopular(JSON.parse(check))
         }else{
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonacularApiKey}&number=10`); 
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=10`); 
             const data = await api.json();
             localStorage.setItem('popular', JSON.stringify(data.recipes));
             setPopular(data.recipes);
@@ -21,7 +21,7 @@ function Popular(){
     }
     
     useEffect(()=> {
-        getPopular()
+        getPopular(apiKey)
     }, []);
 
 

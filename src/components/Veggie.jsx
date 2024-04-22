@@ -5,15 +5,15 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 
 function Veggie(){
-    const spoonacularApiKey = import.meta.env.VITE_SOME_KEY;
+    const apiKey = import.meta.env.VITE_SOME_KEY;
     const [veggie, setVeggie] = useState([]);
 
-    const getVeggie = async() => {
+    const getVeggie = async(apiKey) => {
         const check = localStorage.getItem('veggie');
         if(check !== null){
             setVeggie(JSON.parse(check));
         }else{
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonacularApiKey}&number=10&tags=vegetarian`);
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=10&tags=vegetarian`);
             const data = await api.json();
             localStorage.setItem('veggie', JSON.stringify(data.recipes));
             setVeggie(data.recipes);
@@ -21,7 +21,7 @@ function Veggie(){
     }
 
     useEffect(()=> {
-        getVeggie()
+        getVeggie(apiKey)
     }, []);
 
 
