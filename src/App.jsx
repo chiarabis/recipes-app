@@ -1,36 +1,40 @@
 import Pages from "./pages/Pages"
-import Category from "./components/Category"
 import Search from "./components/Search"
 import List from "./components/List"
+import Menu from "./components/Menu"
 import Favorites from "./components/Favorites"
 import { BrowserRouter } from "react-router-dom"
 import styled from "styled-components"
-import { GiKnifeFork } from "react-icons/gi"
 import { Link } from "react-router-dom"
 import { IngredientProvider } from "./contexts/IngredientContext"
 
 
+
 function App() {
+
   return (
     <>
-      <div>
+      <div className="container">
         <BrowserRouter>
         <IngredientProvider>
 
           <Nav>
             <Logo>
-              <GiKnifeFork/>
-              <AppName to={'/'}>Deli App</AppName>
+              <AppName to={'/'}>Foodelicious</AppName>
+              <span>Your favourite app to try new delicious recipes!</span>
             </Logo>
 
             <Box>
-              <Favorites/>
-              <List/>
+              <IconGroup>
+                <Favorites/>
+                <List/>
+              </IconGroup>
+
               <Search/>
+              <Menu/>
             </Box>
           </Nav>
 
-          <Category/>
           <Pages/>
         
         </IngredientProvider>
@@ -44,34 +48,74 @@ const Nav = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 3rem;
+    margin-bottom: 3rem;
+
+    @media (max-width: 768px){
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+`
+
+const AppName = styled(Link)`
+    text-decoration: none;
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-family: 'Pacifico', cursive;
+    margin: 0;
+    background: -webkit-linear-gradient(30deg, #f27121, #e94057);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 `
 
 const Logo = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-  
-    svg{
-      font-size: 2rem;
-      color: #f27121;
+    align-items: flex-start;
+    margin-right: 2rem;
+    width: fit-content;
+
+    span{
+      text-align:center;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      font-size: 1.3rem;
+      background: -webkit-linear-gradient(30deg, #f27121, #e94057);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (max-width: 768px){
+      justify-content: center;
+      align-items:center;
+      margin-bottom: 1rem;
+      margin-right: 0;
     }
 `
 
 const Box = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-direction: row;
+  //width: 100%;
+
+  @media (max-width: 700px) { //640
+    flex-direction: column;
+  }
 `
 
-const AppName = styled(Link)`
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-family: 'Delius Unicase', cursive;
-    margin: 0 1rem;
-    background: -webkit-linear-gradient(30deg, #f27121, #e94057);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+const IconGroup = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+
+    @media (max-width: 700px) {
+      margin-top: 2rem;
+      justify-content: space-evenly;
+      width: 50%;
+    }
 `
 
 export default App;
