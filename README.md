@@ -1,5 +1,5 @@
 # Recipes App
-A cookbook app with lots of recipes. You can save you favorites, share and add ingredients to your grocery list! Create with Vite.js and React.
+A responsive cookbook app with lots of recipes. You can save you favorites, share and add ingredients to your grocery list! Create with Vite.js and React.
 
 ---
 ### Notes
