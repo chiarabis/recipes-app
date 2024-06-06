@@ -31,7 +31,6 @@ const FormStyle = styled.form`
     }
     @media (max-width: 480px) {
         width: 100%;
-
     }
 
     div{
@@ -53,9 +52,8 @@ const FormStyle = styled.form`
 
     svg{
         position: absolute;
-        top: 30%; //50
-        left: 5%; //0
-        //transform: translate(100%, -50%);
+        top: 30%;
+        left: 5%;
         color: white;
         font-size: 1.5rem;
         cursor: pointer;
@@ -65,7 +63,6 @@ const FormStyle = styled.form`
     }
     svg:hover{
         color: #f27121;
-        //transform: scale(1.2)
     }
     `
 
