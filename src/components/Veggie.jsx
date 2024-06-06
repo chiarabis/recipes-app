@@ -17,6 +17,7 @@ function Veggie(){
             const data = await api.json();
             localStorage.setItem('veggie', JSON.stringify(data.recipes));
             setVeggie(data.recipes);
+            console.log(data.recipes)
         }
     }
 
@@ -31,11 +32,29 @@ function Veggie(){
                 <h3>Vegetarian picks</h3>
 
                 <Splide options={{
-                    perPage: 4,
+                    perPage: 5,
                     arrows: false,
                     pagination: false,
                     drag: 'free',
-                    gap: '3rem',
+                    gap: '2rem',
+                    breakpoints: {
+                        1058: {
+                            perPage: 4,
+                            gap: '1.5rem'
+                        },
+                        780: {
+                            perPage: 3,
+                            gap: '1.5rem'
+                        },
+                        640: {
+                            perPage: 2,
+                            gap: '1rem'
+                        },
+                        480: {
+                            perPage: 1,
+                            gap: '1rem'
+                        },
+                    }
                 }}>
                     {veggie.map((recipe) => {
                         return (
@@ -58,6 +77,16 @@ function Veggie(){
 
 const Wrapper = styled.div`
     margin: 4rem 0;
+
+    h3{
+        font-size: 1.3rem;
+    }
+
+    @media (max-width: 1024px){
+        h3{
+            font-size: 1.5rem;
+        }
+    }
     `;
 const Card = styled.div`
     min-height: 15rem;
@@ -82,7 +111,7 @@ const Card = styled.div`
         bottom: 0%;
         transform: translate(-50%, 0%);
         color: white;
-        width: 100%;
+        width: 80%;
         text-align: center;
         font-weight: 600;
         font-size: 0.8rem;
@@ -90,6 +119,12 @@ const Card = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    @media (max-width: 768px){
+        p {
+            font-size: 1.1rem;
+        }
     }
     `;
 const Gradient = styled.div`
