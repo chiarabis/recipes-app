@@ -273,7 +273,6 @@ const Dropdown = styled.div`
     border-radius: 2rem;
     border: 3px solid #f27121;
     box-shadow: 0px 8px 10px 5px #f27121;
-    //width: fit-content;
     margin-top: 0.5rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -368,7 +367,6 @@ const MenuContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    //cursor: pointer;
     color: #313131;
     
     svg{
@@ -449,80 +447,6 @@ const CatLink = styled(NavLink)`
     }
 
 `
-/*const Banner = styled.div`
-    opacity: ${props => props.show ? '1' : '0'};
-    transition: opacity 3s ease-in-out;
-    position: absolute;
-    top: -25%;
 
-    background: linear-gradient(to right, #f27121, #e94057);
-    border-radius: 1rem;
-    display: flex;
-    flex-direction:column;
-    flex-wrap: wrap;
-    align-items:center;
-    justify-content: center;
-    margin: 2rem 0;
-    height:200px;
-    width: 100%;
-
-    h1{
-        color: #313131;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    @media (max-width: 1216px){
-        top: 0;
-    }
-    @media (max-width: 855px){
-        top: 15%;
-    }
-`
-const List = styled.div`
-    opacity: ${props => props.show ? '1' : '0'};
-    transition: opacity 3s ease;
-
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-    flex-wrap: wrap;
-`
-const SLink = styled(NavLink)`
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    border-radius: 50%;
-    //margin-right: 2rem;
-    text-decoration: none;
-    background: linear-gradient(35deg, #494949, #313131);
-    width: 6rem;
-    height: 6rem;
-    cursor: pointer;
-    transform: scale(0.8);
-
-    h4{
-        color: white;
-        font-size: 0.8rem;
-        text-align: center;
-        margin-top: 0.5rem;
-    }
-    
-    svg{
-        color: white;
-        font-size: 1.5rem;
-    }
-    &.active{
-        background: linear-gradient(to right, #f27121, #e94057);
-
-        svg{
-            color: white;
-        }
-        h4{
-            color: white;
-        }
-    }
-`*/
 
 export default Category;
