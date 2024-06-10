@@ -17,4 +17,4 @@ I got data from _Spoonacular API_. To get the API key you need to register. Sinc
  
 ---
 ### Link
-:globe_with_meridians: The site is deployed by Vercel ‣ [HERE](https://recipes-app-hazel-zeta.vercel.app/)
+:globe_with_meridians: The site is deployed by Vercel ‣ [HERE](https://recipes-app-hazel-zeta.vercel.app/) ⇾ ⚠️⚠️⚠️ IMPORTANT: project under review ⚠️⚠️⚠️
