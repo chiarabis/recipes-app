@@ -1,5 +1,6 @@
 import Home from "./Home"
 import Cuisine from "./Cuisine"
+import MealType from "./MealType"
 import Searched from "./Searched"
 import Recipe from "./Recipe"
 import GroceryList from "./GroceryList"
@@ -15,6 +16,7 @@ function Pages(){
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/cuisine/:type" element={<Cuisine/>}/>
+                <Route path="/type/:type" element={<MealType/>}/>
                 <Route path="/searched/:search" element={<Searched/>}/>
                 <Route path="/recipe/:name" element={<Recipe/>}/>
                 <Route path="/list/" element={<GroceryList/>}/>
