@@ -63,9 +63,36 @@ const AppName = styled(Link)`
     font-weight: 600;
     font-family: 'Pacifico', cursive;
     margin: 0;
-    background: -webkit-linear-gradient(30deg, #f27121, #e94057);
+    background:
+    -webkit-linear-gradient(30deg, #f27121, #e94057);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    
+    animation: jello 3s ease-in 0s 3 normal forwards;   
+    
+    @keyframes jello {
+      0% {
+        transform: scale3d(1, 1, 1);
+      }
+      30% {
+        transform: scale3d(1.25, 0.75, 1);
+      }
+      40% {
+        transform: scale3d(0.75, 1.25, 1);
+      }
+      50% {
+        transform: scale3d(1.15, 0.85, 1);
+      }
+      65% {
+        transform: scale3d(0.95, 1.05, 1);
+      }
+      75% {
+        transform: scale3d(1.05, 0.95, 1);
+      }  
+      100% {
+        transform: scale3d(1, 1, 1);
+      }
+    }
 `
 
 const Logo = styled.div`
@@ -99,9 +126,8 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  //width: 100%;
 
-  @media (max-width: 700px) { //640
+  @media (max-width: 700px) {
     flex-direction: column;
   }
 `
