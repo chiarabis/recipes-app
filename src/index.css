@@ -12,7 +12,6 @@ body{
 }
 h4{
     font-size: 1rem;
-    color: rgb(49, 49, 49);
 }
 h3{
     font-size: 1.5rem;
@@ -22,6 +21,15 @@ h3{
 }
 a{
     color: rgb(49, 49, 49);
+    text-underline-offset: 2px;
+}
+a:hover{
+    color: #f27121;
+}
+p{
+    color: rgb(49, 49, 49);
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 .container{
     margin-top: 3rem;
