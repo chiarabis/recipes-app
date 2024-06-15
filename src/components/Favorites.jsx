@@ -20,8 +20,6 @@ function Favorites() {
 
 const ListIcon = styled.div`
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
     align-items: center;
     cursor: pointer;
     margin-right: 2rem;
@@ -32,8 +30,14 @@ const ListIcon = styled.div`
     }
     svg:active{
       transform: scale(1.2);
-      color: #f27121;
-  }
+    }
+    svg:hover{
+        color: #f27121;
+    }
+
+    @media (max-width: 700px){ //480
+        margin: 0;
+    }
 `
 
 export default Favorites;

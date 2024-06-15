@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { motion } from 'framer-motion'
 import { SlArrowDown, SlArrowUp } from "react-icons/sl"
 import { useState } from "react";
 import Category from "./Category"
@@ -19,7 +18,6 @@ export default function Menu() {
     return (
     <>
         <div style={{position: 'relative', width: 'fit-content'}}>
-            
             <MenuContainer onClick={toggleMenu}>
                 <h2>Menu</h2>
                 {isOpen ? <SlArrowUp /> : <SlArrowDown />}

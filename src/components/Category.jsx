@@ -11,26 +11,6 @@ import { useState, useEffect } from "react"
 
 
 function Category( {closeDropdown} ){
-    const [showCategories, setShowCategories] = useState(false)
-    const [showBanner, setShowBanner] = useState(true)
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-          setShowBanner(true);
-        }, 3000);
-        return () => clearTimeout(timer);
-      }, []);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-        setShowCategories(true);
-        setShowBanner(false);
-        }, 3000);
-        return () => clearTimeout(timer);
-    }, []);
-
-
-
     const [isMealTypeOpen, setIsMealTypeOpen] = useState();
     const [isCuisineOpen, setIsCuisineOpen] = useState();
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 967);
@@ -447,6 +427,5 @@ const CatLink = styled(NavLink)`
     }
 
 `
-
 
 export default Category;

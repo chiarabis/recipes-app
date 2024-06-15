@@ -87,7 +87,7 @@ const Wrapper = styled.div`
             font-size: 1.5rem;
         }
     }
-    `;
+`;
 const Card = styled.div`
     min-height: 15rem;
     border-radius: 2rem;
@@ -126,13 +126,13 @@ const Card = styled.div`
             font-size: 1.1rem;
         }
     }
-    `;
+`;
 const Gradient = styled.div`
     z-index: 3;
     position: absolute;
     width: 100%;
     height: 100%;
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7));
-    `
+`
 
 export default Veggie;

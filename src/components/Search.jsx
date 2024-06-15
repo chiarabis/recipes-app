@@ -31,6 +31,7 @@ const FormStyle = styled.form`
     }
     @media (max-width: 480px) {
         width: 100%;
+
     }
 
     div{
@@ -64,6 +65,6 @@ const FormStyle = styled.form`
     svg:hover{
         color: #f27121;
     }
-    `
+`
 
 export default Search;
