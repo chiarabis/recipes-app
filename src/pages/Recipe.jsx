@@ -42,7 +42,6 @@ function Recipe() {
             const detailData = await data.json();
             setDetails(detailData);
             console.log(detailData, detailData.spoonacularScore)
-            //setLoading(false)
         } catch(error) {
             console.error('Si è verificato un errore durante il recupero dei dati:', error);
         }
@@ -246,8 +245,6 @@ function Recipe() {
 
                         {activeTab === 'instructions' && (
                             <div className='instructions'>
-                                {/*<p dangerouslySetInnerHTML={{__html: details.summary}}></p>
-                                <p dangerouslySetInnerHTML={{__html: details.instructions}}></p>*/}
                                 <p>{details.summary ? new DOMParser().parseFromString(details.summary, 'text/html').body.innerText : ''}</p>
                                 <p className='recipe-links'>{details && renderLinks(details.summary)}</p>
 
@@ -340,7 +337,6 @@ const DetailWrapper = styled.div`
     
 
     .active{
-        //background: linear-gradient(35deg, #494949, #313131);
         background: #313131;
         color: white;
     }

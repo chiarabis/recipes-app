@@ -9,7 +9,6 @@
 .title-heading{
     display: flex;
     flex-direction: row;
-    //justify-content: space-between;
     margin-bottom: 2rem;
 }
 .title-heading h2{
@@ -19,11 +18,6 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    /*display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 0.5rem;
-    align-items: center;
-    margin-left: 3rem;*/
 }
 .cuisine p{
     margin-left: 1rem;

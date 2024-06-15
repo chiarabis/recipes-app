@@ -4,7 +4,7 @@ import MealType from "./MealType"
 import Searched from "./Searched"
 import Recipe from "./Recipe"
 import GroceryList from "./GroceryList"
-import FavRecipes from "./FavRecipes"
+import FavList from "./FavList"
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion"
 
@@ -20,7 +20,7 @@ function Pages(){
                 <Route path="/searched/:search" element={<Searched/>}/>
                 <Route path="/recipe/:name" element={<Recipe/>}/>
                 <Route path="/list/" element={<GroceryList/>}/>
-                <Route path="/favorites/" element={<FavRecipes/>}/>
+                <Route path="/favorites/" element={<FavList/>}/>
             </Routes>
         </AnimatePresence>
     )

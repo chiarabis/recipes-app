@@ -1,5 +1,6 @@
 import Popular from '../components/Popular';
-import Veggie from '../components/Veggie'
+import Veggie from '../components/Veggie';
+import GlutenFree from '../components/GlutenFree';
 import { motion } from 'framer-motion'
 
 function Home(){
@@ -10,8 +11,9 @@ function Home(){
             exit={{opacity: 0}}
             transition={{duration: 0.5}}
             >
-            <Veggie/>
             <Popular/>
+            <Veggie/>
+            <GlutenFree/>
         </motion.div>
     )
 }
