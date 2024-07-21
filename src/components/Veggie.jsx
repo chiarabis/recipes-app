@@ -10,16 +10,29 @@ function Veggie(){
 
     const getVeggie = async(apiKey) => {
         const check = localStorage.getItem('veggie');
-        if(check !== null){
-            setVeggie(JSON.parse(check));
-        }else{
+        if(check){
+            try{
+                const parsedData = JSON.parse(check)
+                setVeggie(parsedData);
+            } catch(error) {
+                console.error('Failed to parse local storage data:', error);
+                fetchVeggie(apiKey);
+            }
+        }else {
+            fetchVeggie(apiKey);
+        }
+    };
+
+    const fetchVeggie = async(apiKey) => {
+        try {
             const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=10&tags=vegetarian`);
             const data = await api.json();
             localStorage.setItem('veggie', JSON.stringify(data.recipes));
             setVeggie(data.recipes);
-            console.log(data.recipes)
+        } catch (error) {
+            console.error('Failed to fetch veggie data:', error);
         }
-    }
+    };
 
     useEffect(()=> {
         getVeggie(apiKey)

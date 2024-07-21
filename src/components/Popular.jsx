@@ -10,15 +10,29 @@ function Popular(){
 
     const getPopular = async(apiKey) => {
         const check = localStorage.getItem('popular');
-        if(check !== null){
-            setPopular(JSON.parse(check))
-        }else{
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=10`); 
+        if(check){
+            try{
+                const parsedData = JSON.parse(check)
+                setPopular(parsedData);
+            } catch(error) {
+                console.error('Failed to parse local storage data:', error);
+                fetchPopular(apiKey);
+            }
+        }else {
+            fetchPopular(apiKey);
+        }
+    };
+
+    const fetchPopular = async(apiKey) => {
+        try {
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=10`);
             const data = await api.json();
             localStorage.setItem('popular', JSON.stringify(data.recipes));
             setPopular(data.recipes);
+        } catch (error) {
+            console.error('Failed to fetch popular data:', error);
         }
-    }
+    };
     
     useEffect(()=> {
         getPopular(apiKey)

@@ -6,19 +6,33 @@ import '@splidejs/splide/dist/css/splide.min.css';
 
 function GlutenFree() {
     const apiKey = import.meta.env.VITE_SOME_KEY;
-    const [glutenFree, setGlutenFree] = useState([]);
+    const [glutenfree, setGlutenfree] = useState([]);
 
     const getGlutenFree = async(apiKey) => {
-        const check = localStorage.getItem('gluten-free');
-        if(check !== null){
-            setGlutenFree(JSON.parse(check));
-        }else{
+        const check = localStorage.getItem('gluten-free'); 
+        if(check){ //check && check !== '[]'
+            try{
+                const parsedData = JSON.parse(check)
+                setGlutenfree(parsedData);
+            } catch(error) {
+                console.error('Failed to parse local storage data:', error);
+                fetchGlutenfree(apiKey);
+            }
+        }else {
+            fetchGlutenfree(apiKey);
+        }
+    };
+
+    const fetchGlutenfree = async(apiKey) => {
+        try {
             const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=10&tags=gluten-free`);
             const data = await api.json();
             localStorage.setItem('gluten-free', JSON.stringify(data.recipes));
-            setGlutenFree(data.recipes);
+            setGlutenfree(data.recipes);
+        } catch (error) {
+            console.error('Failed to fetch gluten free data:', error);
         }
-    }
+    };
 
     useEffect(()=> {
         getGlutenFree(apiKey)
@@ -55,7 +69,7 @@ function GlutenFree() {
                         },
                     }
                 }}>
-                    {glutenFree.map((recipe) => {
+                    {glutenfree.map((recipe) => {
                         return (
                             <SplideSlide key={recipe.id}>
                                 <Card>
