@@ -13,7 +13,7 @@ function GlutenFree() {
         if(check !== null){
             setGlutenFree(JSON.parse(check));
         }else{
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=10&tags=glutenfree`);
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=10&tags=gluten-free`);
             const data = await api.json();
             localStorage.setItem('gluten-free', JSON.stringify(data.recipes));
             setGlutenFree(data.recipes);
