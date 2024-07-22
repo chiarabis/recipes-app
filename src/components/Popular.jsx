@@ -10,7 +10,7 @@ function Popular(){
 
     const getPopular = async(apiKey) => {
         const check = localStorage.getItem('popular');
-        if(check){
+        if(check && check !== '[]'){
             try{
                 const parsedData = JSON.parse(check)
                 setPopular(parsedData);
