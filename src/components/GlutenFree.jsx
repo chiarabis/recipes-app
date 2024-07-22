@@ -10,7 +10,7 @@ function GlutenFree() {
 
     const getGlutenFree = async(apiKey) => {
         const check = localStorage.getItem('gluten-free'); 
-        if(check){ //check && check !== '[]'
+        if(check && check !== '[]'){
             try{
                 const parsedData = JSON.parse(check)
                 setGlutenfree(parsedData);
