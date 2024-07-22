@@ -10,7 +10,7 @@ function Veggie(){
 
     const getVeggie = async(apiKey) => {
         const check = localStorage.getItem('veggie');
-        if(check){
+        if(check && check !== '[]'){
             try{
                 const parsedData = JSON.parse(check)
                 setVeggie(parsedData);
