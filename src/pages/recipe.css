@@ -67,7 +67,6 @@
 }
 .info-heading{
     display: flex;
-    flex-wrap: wrap;
     margin-bottom: 2rem;
     flex-direction: row;
     justify-content: space-between;

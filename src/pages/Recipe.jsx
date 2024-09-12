@@ -41,7 +41,6 @@ function Recipe() {
             }
             const detailData = await data.json();
             setDetails(detailData);
-            console.log(detailData, detailData.spoonacularScore)
         } catch(error) {
             console.error('Si è verificato un errore durante il recupero dei dati:', error);
         }
@@ -134,6 +133,15 @@ function Recipe() {
     };
 
     //diet icon mapping
+    /*const dietIconMapping = {
+        vegan: { icon: <LuVegan style={{color: '#1da834', fontSize: '1.5rem'}} />, key: 'vegan', message: 'Vegan' },
+        dairyFree: { icon: <TbMilkOff style={{color: '#deca64', fontSize: '1.5rem'}} />, key: 'dairyFree', message: 'Dairy free' },
+        paleo: { icon: <TbMeat style={{color: '#bd2a2a', fontSize: '1.5rem'}} />, key: 'paleo', message: 'Paleo'},
+        vegetarian: { icon: <TbCarrot style={{color: '#f77534', fontSize: '1.5rem'}} />, key: 'vegetarian', message: 'Vegetarian' },
+        glutenFree: { icon: <LuWheatOff style={{color: '#c9861a', fontSize: '1.5rem'}} />, key: 'glutenFree', message: 'Gluten free' },
+        pescatarian: { icon: <TbFish style={{color: '#1f57db', fontSize: '1.5rem'}} />, key: 'pescatarian', message: 'Pescatarian' },
+        lowFodmap: { icon: <GiStomach style={{color: '#5c3b31', fontSize: '1.5rem'}} />, key: 'lowFodmap', message: 'Low FODMAP' }
+    };*/
     const dietIconMapping = {
         'vegan': {icon: <LuVegan style={{color: '#1da834', fontSize: '1.5rem'}} />, message: 'Vegan'},
         'dairy free': {icon: <TbMilkOff style={{color: '#deca64', fontSize: '1.5rem'}} />, message: 'Dairy free'},
@@ -220,6 +228,18 @@ function Recipe() {
                                 ))}
                                 {showPopupDiet && <PopupDiet>{dietMessage}</PopupDiet>}
                             </div>
+                            {/*<div className='diet-icons'>
+                                {Object.keys(dietIconMapping).map(key => (
+                                    details[key] && (
+                                        <div key={key}
+                                            onMouseEnter={() => {setShowPopupDiet(true); setDietMessage(dietIconMapping[key].message);}}
+                                            onMouseLeave={() => {setShowPopupDiet(false); setDietMessage('');}}>
+                                            {dietIconMapping[key].icon}
+                                        </div>
+                                    )
+                                ))}
+                                {showPopupDiet && <PopupDiet>{dietMessage}</PopupDiet>}
+                            </div>*/}
                         </div>
 
                         {activeTab === 'instructions' && (
@@ -312,7 +332,6 @@ const DetailWrapper = styled.div`
     margin-bottom: 5rem;
     display: flex;
     flex-direction: row;
-    width: fit-content;
     
 
     .active{
