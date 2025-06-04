@@ -10,7 +10,7 @@ I got data from _Spoonacular API_. To get the API key you need to register. Sinc
 ### Libraries, frameworks and tools
 - [x] Vite
 - [x] Framer Motion
-- [x] Styled Components
+- [x] React Styled Components
 - [x] Other React libraries for animations and UI components
 
 ---
